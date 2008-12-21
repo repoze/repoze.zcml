@@ -136,6 +136,13 @@ Example:
      name="myutility"
      />
 
+factory
+^^^^^^^
+
+Describes the factory which should create the utility to be
+registered.  This attribute is mutually exlusive with the
+``component`` attribute.
+
 component
 ^^^^^^^^^
 
