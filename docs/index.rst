@@ -43,13 +43,13 @@ Thereafter, you will be able to use the directive types it defines
 within your ZCML.
 
 The directives defined in :mod:`repoze.zcml` are defined within the
-namespace ``http://namespaces.repoze.org/zcml``.  Therefore to use any
-of the :mod:`repoze.zcml`-defined directives without a
+namespace ``http://namespaces.repoze.org/bfg``.  Therefore to use any
+of the :mod:`repoze.zcml` -defined directives without a
 namespace-qualified name, you should write your ZCML like so:
 
 .. code-block:: xml
 
-  <configure xmnls="http://namespaces.repoze.org/zcml">
+  <configure xmnls="http://namespaces.repoze.org/bfg">
 
     <adapter
        factory="some.package.Foo"
@@ -66,9 +66,9 @@ qualified name within another application that already has a default
 ``configure`` tag::
 
   <configure xmnls="http://namespaces.zope.org/zope">
-       xmlns:zcml="http://namespaces.repoze.org/zcml">
+       xmlns:bfg="http://namespaces.repoze.org/bfg">
 
-    <zcml:adapter
+    <bfg:adapter
        factory="some.package.Foo"
        provides="some.package.IFoo"
        for="some.package.IBar some.package.IBaz"
