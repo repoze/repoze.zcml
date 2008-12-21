@@ -1,7 +1,7 @@
 repoze.zcml Changelog
 =====================
 
-0.1 (unreleaesd)
+0.1
 ----------------
 
 - Initial release.
