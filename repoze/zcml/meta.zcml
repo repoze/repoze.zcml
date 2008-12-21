@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:meta="http://namespaces.zope.org/meta">
+
+  <meta:directives namespace="http://namespaces.repoze.org/zcml">
+
+    <meta:directive
+        name="adapter"
+        schema="repoze.zcml.IAdapterDirective"
+        handler="repoze.zcml.adapter"
+        />
+
+    <meta:directive
+        name="subscriber"
+        schema="repoze.zcml.ISubscriberDirective"
+        handler="repoze.zcml.subscriber"
+        />
+
+    <meta:directive
+        name="utility"
+        schema="repoze.zcml.IUtilityDirective"
+        handler="repoze.zcml.utility"
+        />
+
+  </meta:directives>
+
+</configure>
