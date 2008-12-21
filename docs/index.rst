@@ -37,7 +37,7 @@ To make use of :mod:`repoze.zcml`, you should install the
 :mod:`repoze.zcml` package, then subsequently include its "meta.zcml"
 from within some ZCML that is used by your application::
 
-  <include package="repoze.zcml" filename="meta.zcml"/>
+  <include package="repoze.zcml" file="meta.zcml"/>
 
 Thereafter, you will be able to use the directive types it defines
 within your ZCML.
