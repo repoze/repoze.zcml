@@ -63,7 +63,9 @@ namespace-qualified name, you should write your ZCML like so:
 On the other hand, if you want to use these directives with a
 qualified name within another application that already has a default
 ``xmlns``, you can do so by adding a different XML namespace to the
-``configure`` tag::
+``configure`` tag:
+
+.. code-block:: xml
 
   <configure xmnls="http://namespaces.zope.org/zope">
        xmlns:bfg="http://namespaces.repoze.org/bfg">
@@ -80,9 +82,11 @@ qualified name within another application that already has a default
 Directives
 ----------
 
-*adapter*
-  The ``adapter`` directive registers an adapter within the component
-  architecture registry.
+`adapter`
+~~~~~~~~~
+
+The ``adapter`` directive registers an adapter within the component
+architecture registry.
 
 Example:
 
@@ -95,26 +99,32 @@ Example:
      name="myadapter"
      />
 
-.. directive:: .. factory
+factory
+^^^^^^^
 
-   The factory which creates an adapter (dotted name).
+The factory which creates an adapter (dotted name).
 
-.. directive:: .. provides
+provides
+^^^^^^^^
 
-   This implies the interface that the adapter provides (dotted name).
+This implies the interface that the adapter provides (dotted name).
 
-.. directive:: .. for
+for
+^^^
 
-   This implies the interface(s) which the adapter is "for".  (One or
-   more dotted names).
+This implies the interface(s) which the adapter is "for".  (One or
+more dotted names).
 
-.. directive:: .. name
+name
+^^^^
 
-   The name by which the adapter should be looked up.
+The name by which the adapter should be looked up.
 
-*utility*
-  The ``utility`` directive registers a utility within the component
-  architecture registry.
+`utility`
+~~~~~~~~~
+
+The ``utility`` directive registers a utility within the component
+architecture registry.
 
 Example:
 
@@ -126,26 +136,32 @@ Example:
      name="myutility"
      />
 
-.. directive:: .. component
+component
+^^^^^^^^^
 
-   Describes the component registered as the adapter.  This attribute
-   is mutually exlusive with the ``factory`` attribute.
+Describes the component registered as the adapter.  This attribute is
+mutually exlusive with the ``factory`` attribute.
 
-.. directive:: .. provides
+provides
+^^^^^^^^
 
-   Describes the provides interface for an adapter.
+Describes the provides interface for an adapter.
 
-.. directive:: .. for
+for
+^^^
 
-   Describes the for interface(s) for an adapter.
+Describes the for interface(s) for an adapter.
 
-.. directive:: .. name
+name
+^^^^
 
-   Describes the name of the adapter.
+Describes the name of the adapter.
 
-*subscriber*
-  The ``subscriber`` directive registers an event subscriber within
-  the component architecture registry.
+`subscriber`
+~~~~~~~~~~~~
+
+The ``subscriber`` directive registers an event subscriber within the
+component architecture registry.
 
 Example:
 
@@ -157,26 +173,30 @@ Example:
      for="some.package.IBar"
      />
 
-.. directive:: .. handler
+handler
+^^^^^^^
 
-   The handler for the subscriber.  This is a subscriber which does
-   not require a factory.  This attribute is mutually exclusive with
-   the ``factory`` directive.
+The handler for the subscriber.  This is a subscriber which does not
+require a factory.  This attribute is mutually exclusive with the
+``factory`` directive.
 
-.. directive:: .. factory
+factory
+^^^^^^^
 
-   The factory which creates an subscriber (dotted name).  This
-   attribute is mutually exclusive with the ``handler`` directive.
+The factory which creates an subscriber (dotted name).  This attribute
+is mutually exclusive with the ``handler`` directive.
 
-.. directive:: .. provides
+provides
+^^^^^^^^
 
-   This implies the interface that the subscriber adapter provides
-   (dotted name).
+This implies the interface that the subscriber adapter provides
+(dotted name).
 
-.. directive:: .. for
+for
+^^^
 
-   This implies the interface(s) which the subscriber adapter is
-   "for".  (One or more dotted names).
+This implies the interface(s) which the subscriber adapter is "for".
+(One or more dotted names).
 
 Indices and tables
 ------------------
