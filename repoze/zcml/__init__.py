@@ -1,4 +1,4 @@
-# the three imports below are not really unused, despite what PyFlakes
+# the five imports below are not really unused, despite what PyFlakes
 # thinks of the situation
 
 import zope.interface

@@ -1,6 +1,11 @@
 repoze.zcml Changelog
 =====================
 
+0.2
+---
+
+- Depend on zope.component >= 3.5.0 (utility directive requires it).
+
 0.1
 ----------------
 

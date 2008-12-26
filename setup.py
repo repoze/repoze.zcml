@@ -12,7 +12,7 @@
 #
 ##############################################################################
 
-__version__ = '0.1'
+__version__ = '0.2'
 
 import os
 
@@ -27,7 +27,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 install_requires = [
     'setuptools',
-    'zope.component',
+    'zope.component>=3.5.0',
     'zope.configuration',
     ]
 
