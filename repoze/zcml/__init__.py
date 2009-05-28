@@ -176,11 +176,18 @@ def utility(_context, provides=None, component=None, factory=None, name=''):
         else:
             raise TypeError("Missing 'provides' attribute")
 
+    if factory:
+        kw = dict(factory=factory)
+    else:
+        # older zope.component registries don't accept factory as a kwarg,
+        # so if we don't need it, we don't pass it
+        kw = {}
+
     _context.action(
         discriminator = ('utility', provides, name),
         callable = handler,
         args = ('registerUtility', component, provides, name),
-        kw = dict(factory=factory),
+        kw = kw,
         )
 
 class IUtilityDirective(zope.interface.Interface):

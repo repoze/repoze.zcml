@@ -1,6 +1,13 @@
 repoze.zcml Changelog
 =====================
 
+0.3 (2009-05-28)
+----------------
+
+- Provide compatbility with older versions of zope.component which
+  have a CA registry that doesn't accept a ``factory`` argument
+  to ``registerUtility``.
+
 0.2
 ---
 

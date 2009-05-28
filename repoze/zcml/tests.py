@@ -207,8 +207,7 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility['callable'], handler)
         self.assertEqual(utility['args'],
                          ('registerUtility', component, IFactory, ''))
-        self.assertEqual(utility['kw'],
-                         {'factory': None})
+        self.assertEqual(utility['kw'], {})
 
 class TestLoadZCML(unittest.TestCase):
     def setUp(self):
