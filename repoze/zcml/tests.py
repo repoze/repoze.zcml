@@ -221,7 +221,36 @@ class TestLoadZCML(unittest.TestCase):
         import repoze.zcml
         xmlconfig.file('meta.zcml', package=repoze.zcml)
 
-    
+class TestHandler(unittest.TestCase):
+    def setUp(self):
+        cleanUp()
+
+    def tearDown(self):
+        cleanUp()
+
+    def _callFUT(self, methodName, *arg, **kw):
+        from repoze.zcml import handler
+        return handler(methodName, *arg, **kw)
+
+    def test_it(self):
+        def foo():
+            pass
+        from zope.interface import Interface
+        class IWhatever(Interface):
+            pass
+        self._callFUT('registerUtility', foo, IWhatever)
+
+class TestRolledUpFactory(unittest.TestCase):
+    def _callFUT(self, *factories):
+        from repoze.zcml import _rolledUpFactory
+        return _rolledUpFactory(factories)
+
+    def test_it(self):
+        def foo(ob):
+            return ob
+        factory = self._callFUT(foo, foo)
+        result = factory(True)
+        self.assertEqual(result, True)
 
 from zope.interface import Interface
 from zope.interface import implements
