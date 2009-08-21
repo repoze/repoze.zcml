@@ -49,8 +49,8 @@ setup(name='repoze.zcml',
       include_package_data=True,
       namespace_packages=['repoze'],
       zip_safe=False,
-      tests_require = install_requires,
-      install_requires= install_requires + ['zope.testing'],
+      tests_require = install_requires + ['zope.testing'],
+      install_requires= install_requires,
       test_suite="repoze.zcml",
       entry_points = """\
       """

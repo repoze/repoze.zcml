@@ -4,6 +4,8 @@ repoze.zcml Changelog
 Next release
 ------------
 
+- Make ``zope.testing`` dependency a testing-only requirement.
+
 - 100% test coverage.
 
 0.3 (2009-05-28)
@@ -16,7 +18,7 @@ Next release
 0.2
 ---
 
-- Depend on zope.component >= 3.5.0 (utility directive requires it).
+- Depend on ``zope.component >= 3.5.0`` (utility directive requires it).
 
 0.1
 ----------------
