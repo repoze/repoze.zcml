@@ -1,8 +1,8 @@
 repoze.zcml Changelog
 =====================
 
-Next release
-------------
+0.4 (2009-09-15)
+----------------
 
 - Make ``zope.testing`` dependency a testing-only requirement.
 
