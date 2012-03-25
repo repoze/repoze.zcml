@@ -4,7 +4,8 @@ repoze.zcml Changelog
 Next release
 ------------
 
-- ...
+- Added 'setup.py dev' alias (runs ``setup.py develop`` plus installs
+  ``nose`` and ``coverage``).
 
 0.4 (2009-09-15)
 ----------------
