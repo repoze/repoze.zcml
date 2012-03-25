@@ -31,6 +31,10 @@ install_requires = [
     'zope.configuration',
     ]
 
+tests_require = install_requires + ['zope.testing']
+
+testing_extras = ['nose', 'coverage']
+
 setup(name='repoze.zcml',
       version=__version__,
       description='Core directives for use in ZCML-based applications',
@@ -49,10 +53,12 @@ setup(name='repoze.zcml',
       include_package_data=True,
       namespace_packages=['repoze'],
       zip_safe=False,
-      tests_require = install_requires + ['zope.testing'],
+      tests_require = tests_require,
       install_requires= install_requires,
       test_suite="repoze.zcml",
       entry_points = """\
-      """
-      )
-
+      """,
+      extras_require = {
+        'testing': tests_require + testing_extras,
+      }
+)
