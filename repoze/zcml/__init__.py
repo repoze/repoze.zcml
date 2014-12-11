@@ -1,23 +1,26 @@
 # the five imports below are not really unused, despite what PyFlakes
 # thinks of the situation
 
-import zope.interface
-import zope.schema
-import zope.configuration
-import zope.component
-import zope.configuration.fields
+from zope.interface import Interface
+from zope.interface import implementedBy
+from zope.interface import providedBy
+from zope.schema import TextLine
+from zope.component import adaptedBy
+from zope.component import getSiteManager
+from zope.configuration.fields import GlobalInterface
+from zope.configuration.fields import GlobalObject
+from zope.configuration.fields import Tokens
 
-from zope.component.interface import provideInterface
 
 def handler(methodName, *args, **kwargs):
-    method = getattr(zope.component.getSiteManager(), methodName)
+    method = getattr(getSiteManager(), methodName)
     method(*args, **kwargs)
 
 def adapter(_context, factory, provides=None, for_=None, name=''):
 
     if for_ is None:
         if len(factory) == 1:
-            for_ = zope.component.adaptedBy(factory[0])
+            for_ = adaptedBy(factory[0])
 
         if for_ is None:
             raise TypeError("No for attribute was provided and can't "
@@ -27,7 +30,7 @@ def adapter(_context, factory, provides=None, for_=None, name=''):
 
     if provides is None:
         if len(factory) == 1:
-            p = list(zope.interface.implementedBy(factory[0]))
+            p = list(implementedBy(factory[0]))
             if len(p) == 1:
                 provides = p[0]
 
@@ -52,36 +55,36 @@ def adapter(_context, factory, provides=None, for_=None, name=''):
                 factory, for_, provides, name, _context.info),
         )
 
-class IAdapterDirective(zope.interface.Interface):
+class IAdapterDirective(Interface):
     """
     Register an adapter
     """
 
-    factory = zope.configuration.fields.Tokens(
+    factory = Tokens(
         title=u"Adapter factory/factories",
         description=(u"A list of factories (usually just one) that create"
                      " the adapter instance."),
         required=True,
-        value_type=zope.configuration.fields.GlobalObject()
+        value_type=GlobalObject()
         )
 
-    provides = zope.configuration.fields.GlobalInterface(
+    provides = GlobalInterface(
         title=u"Interface the component provides",
         description=(u"This attribute specifies the interface the adapter"
                      " instance must provide."),
         required=False,
         )
 
-    for_ = zope.configuration.fields.Tokens(
+    for_ = Tokens(
         title=u"Specifications to be adapted",
         description=u"This should be a list of interfaces or classes",
         required=False,
-        value_type=zope.configuration.fields.GlobalObject(
+        value_type=GlobalObject(
           missing_value=object(),
           ),
         )
 
-    name = zope.schema.TextLine(
+    name = TextLine(
         title=u"Name",
         description=(u"Adapters can have names.\n\n"
                      "This attribute allows you to specify the name for"
@@ -106,7 +109,7 @@ def subscriber(_context, for_=None, factory=None, handler=None, provides=None):
                 "a factory")
 
     if for_ is None:
-        for_ = zope.component.adaptedBy(factory)
+        for_ = adaptedBy(factory)
         if for_ is None:
             raise TypeError("No for attribute was provided and can't "
                             "determine what the factory (or handler) adapts.")
@@ -129,35 +132,35 @@ def subscriber(_context, for_=None, factory=None, handler=None, provides=None):
             )
 
 
-class ISubscriberDirective(zope.interface.Interface):
+class ISubscriberDirective(Interface):
     """
     Register a subscriber
     """
 
-    factory = zope.configuration.fields.GlobalObject(
+    factory = GlobalObject(
         title=u"Subscriber factory",
         description=u"A factory used to create the subscriber instance.",
         required=False,
         )
 
-    handler = zope.configuration.fields.GlobalObject(
+    handler = GlobalObject(
         title=u"Handler",
         description=u"A callable object that handles events.",
         required=False,
         )
 
-    provides = zope.configuration.fields.GlobalInterface(
+    provides = GlobalInterface(
         title=u"Interface the component provides",
         description=(u"This attribute specifies the interface the adapter"
                      " instance must provide."),
         required=False,
         )
 
-    for_ = zope.configuration.fields.Tokens(
+    for_ = Tokens(
         title=u"Interfaces or classes that this subscriber depends on",
         description=u"This should be a list of interfaces or classes",
         required=False,
-        value_type=zope.configuration.fields.GlobalObject(
+        value_type=GlobalObject(
           missing_value = object(),
           ),
         )
@@ -168,9 +171,9 @@ def utility(_context, provides=None, component=None, factory=None, name=''):
 
     if provides is None:
         if factory:
-            provides = list(zope.interface.implementedBy(factory))
+            provides = list(implementedBy(factory))
         else:
-            provides = list(zope.interface.providedBy(component))
+            provides = list(providedBy(component))
         if len(provides) == 1:
             provides = provides[0]
         else:
@@ -190,10 +193,10 @@ def utility(_context, provides=None, component=None, factory=None, name=''):
         kw = kw,
         )
 
-class IUtilityDirective(zope.interface.Interface):
+class IUtilityDirective(Interface):
     """Register a utility."""
 
-    component = zope.configuration.fields.GlobalObject(
+    component = GlobalObject(
         title=u"Component to use",
         description=(u"Python name of the implementation object.  This"
                      " must identify an object in a module using the"
@@ -202,7 +205,7 @@ class IUtilityDirective(zope.interface.Interface):
         required=False,
         )
 
-    factory = zope.configuration.fields.GlobalObject(
+    factory = GlobalObject(
         title=u"Factory",
         description=(u"Python name of a factory which can create the"
                      " implementation object.  This must identify an"
@@ -212,13 +215,13 @@ class IUtilityDirective(zope.interface.Interface):
         required=False,
         )
 
-    provides = zope.configuration.fields.GlobalInterface(
+    provides = GlobalInterface(
         title=u"Provided interface",
         description=u"Interface provided by the utility.",
         required=False,
         )
 
-    name = zope.schema.TextLine(
+    name = TextLine(
         title=u"Name",
         description=(u"Name of the registration.  This is used by"
                      " application code when locating a utility."),
