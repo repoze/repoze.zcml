@@ -1,8 +1,8 @@
 repoze.zcml Changelog
 =====================
 
-Next release
-------------
+1.0b1 (2014-12-11)
+------------------
 
 - Added support for PyPy and PyPy3.
 
