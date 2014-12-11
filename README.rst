@@ -1,6 +1,9 @@
 repoze.zcml README
 ==================
 
+.. image:: https://travis-ci.org/repoze/repoze.zcml.png?branch=master
+        :target: https://travis-ci.org/repoze/repoze.zcml
+
 ``repoze.zcml`` is a package which provides basic ZCML directives for
 the Zope Component Architecture (such as ``utility``, ``subscriber``,
 and ``adapter``).  You should use ``repoze.zcml`` if your application
