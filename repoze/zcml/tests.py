@@ -253,7 +253,7 @@ class TestRolledUpFactory(unittest.TestCase):
         self.assertEqual(result, True)
 
 from zope.interface import Interface
-from zope.interface import implements
+from zope.interface import implementer
 
 class ITest(Interface):
     pass
@@ -261,8 +261,8 @@ class ITest(Interface):
 class IFactory(Interface):
     pass
 
+@implementer(IFactory)
 class DummyFactory(object):
-    implements(IFactory)
     def __call__(self):
         return 1
         
