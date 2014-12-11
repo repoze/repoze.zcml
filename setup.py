@@ -16,11 +16,20 @@ __version__ = '0.5dev'
 
 import os
 
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
 
 here = os.path.abspath(os.path.dirname(__file__))
-README = open(os.path.join(here, 'README.txt')).read()
-CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
+
+def _read_file(filename):
+    try:
+        with open(os.path.join(here, filename)) as f:
+            return f.read()
+    except IOError:  # Travis???
+        return ''
+
+README = _read_file( 'README.txt')
+CHANGES = _read_file( 'CHANGES.txt')
 
 install_requires = [
     'setuptools',
@@ -40,8 +49,13 @@ setup(name='repoze.zcml',
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: Implementation :: CPython",
         ],
       keywords='zope zcml component architecture',

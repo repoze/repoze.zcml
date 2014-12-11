@@ -137,6 +137,7 @@ class TestSubscriber(unittest.TestCase):
         
     def test_register_with_factory(self):
         from repoze.zcml import handler
+        from repoze.zcml._compat import BLANK
         context = DummyContext()
         factory = DummyFactory()
         self._callFUT(context, for_=(ITest,),
@@ -147,10 +148,11 @@ class TestSubscriber(unittest.TestCase):
         self.assertEqual(subadapt['callable'], handler)
         self.assertEqual(subadapt['args'],
                          ('registerSubscriptionAdapter', factory,
-                          (ITest,), IFactory, u'', None) )
+                          (ITest,), IFactory, BLANK, None) )
 
     def test_register_with_handler(self):
         from repoze.zcml import handler
+        from repoze.zcml._compat import BLANK
         context = DummyContext()
         factory = DummyFactory()
         self._callFUT(context, for_=(ITest,),
@@ -161,7 +163,7 @@ class TestSubscriber(unittest.TestCase):
         self.assertEqual(subadapt['callable'], handler)
         self.assertEqual(subadapt['args'],
                          ('registerHandler', factory,
-                          (ITest,), u'', None) )
+                          (ITest,), BLANK, None) )
 
 class TestUtility(unittest.TestCase):
     def setUp(self):

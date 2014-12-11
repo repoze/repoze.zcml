@@ -11,6 +11,9 @@ from zope.configuration.fields import GlobalInterface
 from zope.configuration.fields import GlobalObject
 from zope.configuration.fields import Tokens
 
+from ._compat import BLANK
+from ._compat import text_ as _u
+
 
 def handler(methodName, *args, **kwargs):
     method = getattr(getSiteManager(), methodName)
@@ -61,23 +64,23 @@ class IAdapterDirective(Interface):
     """
 
     factory = Tokens(
-        title=u"Adapter factory/factories",
-        description=(u"A list of factories (usually just one) that create"
-                     " the adapter instance."),
+        title=_u("Adapter factory/factories"),
+        description=(_u("A list of factories (usually just one) that create"
+                        " the adapter instance.")),
         required=True,
         value_type=GlobalObject()
         )
 
     provides = GlobalInterface(
-        title=u"Interface the component provides",
-        description=(u"This attribute specifies the interface the adapter"
-                     " instance must provide."),
+        title=_u("Interface the component provides"),
+        description=(_u("This attribute specifies the interface the adapter"
+                        " instance must provide.")),
         required=False,
         )
 
     for_ = Tokens(
-        title=u"Specifications to be adapted",
-        description=u"This should be a list of interfaces or classes",
+        title=_u("Specifications to be adapted"),
+        description=_u("This should be a list of interfaces or classes"),
         required=False,
         value_type=GlobalObject(
           missing_value=object(),
@@ -85,10 +88,10 @@ class IAdapterDirective(Interface):
         )
 
     name = TextLine(
-        title=u"Name",
-        description=(u"Adapters can have names.\n\n"
-                     "This attribute allows you to specify the name for"
-                     " this adapter."),
+        title=_u("Name"),
+        description=(_u("Adapters can have names.\n\n"
+                        "This attribute allows you to specify the name for"
+                        " this adapter.")),
         required=False,
         )
 
@@ -121,14 +124,14 @@ def subscriber(_context, for_=None, factory=None, handler=None, provides=None):
             discriminator = None,
             callable = _handler,
             args = ('registerHandler',
-                    handler, for_, u'', _context.info),
+                    handler, for_, BLANK, _context.info),
             )
     else:
         _context.action(
             discriminator = None,
             callable = _handler,
             args = ('registerSubscriptionAdapter',
-                    factory, for_, provides, u'', _context.info),
+                    factory, for_, provides, BLANK, _context.info),
             )
 
 
@@ -138,27 +141,27 @@ class ISubscriberDirective(Interface):
     """
 
     factory = GlobalObject(
-        title=u"Subscriber factory",
-        description=u"A factory used to create the subscriber instance.",
+        title=_u("Subscriber factory"),
+        description=_u("A factory used to create the subscriber instance."),
         required=False,
         )
 
     handler = GlobalObject(
-        title=u"Handler",
-        description=u"A callable object that handles events.",
+        title=_u("Handler"),
+        description=_u("A callable object that handles events."),
         required=False,
         )
 
     provides = GlobalInterface(
-        title=u"Interface the component provides",
-        description=(u"This attribute specifies the interface the adapter"
-                     " instance must provide."),
+        title=_u("Interface the component provides"),
+        description=(_u("This attribute specifies the interface the adapter"
+                     " instance must provide.")),
         required=False,
         )
 
     for_ = Tokens(
-        title=u"Interfaces or classes that this subscriber depends on",
-        description=u"This should be a list of interfaces or classes",
+        title=_u("Interfaces or classes that this subscriber depends on"),
+        description=_u("This should be a list of interfaces or classes"),
         required=False,
         value_type=GlobalObject(
           missing_value = object(),
@@ -197,34 +200,34 @@ class IUtilityDirective(Interface):
     """Register a utility."""
 
     component = GlobalObject(
-        title=u"Component to use",
-        description=(u"Python name of the implementation object.  This"
-                     " must identify an object in a module using the"
-                     " full dotted name.  If specified, the"
-                     " ``factory`` field must be left blank."),
+        title=_u("Component to use"),
+        description=(_u("Python name of the implementation object.  This"
+                        " must identify an object in a module using the"
+                        " full dotted name.  If specified, the"
+                        " ``factory`` field must be left blank.")),
         required=False,
         )
 
     factory = GlobalObject(
-        title=u"Factory",
-        description=(u"Python name of a factory which can create the"
-                     " implementation object.  This must identify an"
-                     " object in a module using the full dotted name."
-                     " If specified, the ``component`` field must"
-                     " be left blank."),
+        title=_u("Factory"),
+        description=(_u("Python name of a factory which can create the"
+                        " implementation object.  This must identify an"
+                        " object in a module using the full dotted name."
+                        " If specified, the ``component`` field must"
+                        " be left blank.")),
         required=False,
         )
 
     provides = GlobalInterface(
-        title=u"Provided interface",
-        description=u"Interface provided by the utility.",
+        title=_u("Provided interface"),
+        description=_u("Interface provided by the utility."),
         required=False,
         )
 
     name = TextLine(
-        title=u"Name",
-        description=(u"Name of the registration.  This is used by"
-                     " application code when locating a utility."),
+        title=_u("Name"),
+        description=(_u("Name of the registration.  This is used by"
+                        " application code when locating a utility.")),
         required=False,
         )
 
