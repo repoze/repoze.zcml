@@ -28,8 +28,8 @@ def _read_file(filename):
     except IOError:  # Travis???
         return ''
 
-README = _read_file( 'README.txt')
-CHANGES = _read_file( 'CHANGES.txt')
+README = _read_file( 'README.rst')
+CHANGES = _read_file( 'CHANGES.rst')
 
 install_requires = [
     'setuptools',

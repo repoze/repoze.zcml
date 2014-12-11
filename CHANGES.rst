@@ -8,6 +8,8 @@ Next release
 
 - Added support for Python 3.2, 3.3, 3.4.
 
+- Added support for continuous integration using ``Travis``.
+
 - Added support for continuous integration using ``tox`` and ``jenkins``.
 
 - Added 'setup.py dev' alias (runs ``setup.py develop`` plus installs
