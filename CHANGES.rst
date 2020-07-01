@@ -1,18 +1,26 @@
 repoze.zcml Changelog
 =====================
 
+1.1b1 (unreleased)
+------------------
+
+- Add support for Python 3.5, 3.6, 3.7, and 3.8.
+
+- Drop support for Python 2.6, 3.2, 3.3, and 3.4.
+
+
 1.0b1 (2014-12-11)
 ------------------
 
-- Added support for PyPy and PyPy3.
+- Add support for PyPy and PyPy3.
 
-- Added support for Python 3.2, 3.3, 3.4.
+- Add support for Python 3.2, 3.3, 3.4.
 
-- Added support for continuous integration using ``Travis``.
+- Add support for continuous integration using ``Travis``.
 
-- Added support for continuous integration using ``tox`` and ``jenkins``.
+- Add support for continuous integration using ``tox`` and ``jenkins``.
 
-- Added 'setup.py dev' alias (runs ``setup.py develop`` plus installs
+- Add 'setup.py dev' alias (runs ``setup.py develop`` plus installs
   ``nose`` and ``coverage``).
 
 0.4 (2009-09-15)
