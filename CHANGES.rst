@@ -1,8 +1,8 @@
 repoze.zcml Changelog
 =====================
 
-1.1b1 (unreleased)
-------------------
+1.1 (2020-07-01)
+----------------
 
 - Add support for Python 3.5, 3.6, 3.7, and 3.8.
 
